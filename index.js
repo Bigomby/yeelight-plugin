@@ -45,6 +45,9 @@ yeelight.on('new', (bulb) => {
   });
 });
 
+// Discover every bulb on network
+yeelight.discover();
+
 // API endpoint to handle discover events
 app.post('/discover', (req, res) => {
   yeelight.discover();
