@@ -10,4 +10,5 @@ SHOULD be compatible:
 - Yeelight Mijia Smart LED Desk Lamp
 
 **NOTE 1: The plugin only has been tested with _Yeelight LED Bulb Color_.**
+
 **NOTE 2: The plugin is currently on development, nothing is expected to work... yet.**
