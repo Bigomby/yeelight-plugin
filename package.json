@@ -1,0 +1,47 @@
+{
+  "name": "yeelight-plugin",
+  "version": "0.0.0",
+  "description": "Netbeast plugin for... <your description>",
+  "main": "index.js",
+  "netbeast": {
+    "bootOnLoad": true,
+    "type": "plugin"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "commander": "^2.8.1",
+    "express": "^4.13.3",
+    "mocha": "^2.3.2",
+    "morgan": "^1.6.1",
+    "netbeast": "^1.0.2",
+    "node-ssdp": "^2.8.0",
+    "request": "^2.75.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.2.2"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "GITHUB_REPOSITORY"
+  },
+  "keywords": [
+    "iot",
+    "netbeast",
+    "plugin"
+  ],
+  "author": "YOUR_EMAIL",
+  "license": "GPL 3",
+  "bugs": {
+    "url": "ISSUES_CHANNEL"
+  },
+  "homepage": "HOMEPAGE"
+}
