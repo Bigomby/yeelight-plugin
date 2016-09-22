@@ -29,6 +29,11 @@ const server = app.listen(port);
 // Set the middleware
 app.use(bodyParser.json());
 
+app.use('/client', express.static('client'));
+app.use(express.static('public'));
+app.use(express.static('tools'));
+app.use(express.static('node_modules'));
+
 // Listen for new bulbs announcements and send the info to NETBEAST API
 yeelight.on('new', (bulb) => {
   request.post({
@@ -54,23 +59,14 @@ app.post('/discover', (req, res) => {
   res.end();
 });
 
-
 // Handle single bulb status changes
 app.post('/bulb/:device_id', (req, res) => {
-  let status;
-
-  if (req.body.power) {
-    status = 'on';
-  } else {
-    status = 'off';
-  }
-
+  const status = req.body.power ? 'on' : 'off';
   yeelight.setStatus(req.params.device_id, status);
   res.end();
 });
 
 // Server start callback
 server.on('listening', () => {
-  logger.info(`Yeelight plugin started on \
-${server.address().address}:${server.address().port}`);
+  logger.info(`Yeelight plugin started on ${server.address().address}:${server.address().port}`);
 });
