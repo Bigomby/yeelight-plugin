@@ -72,7 +72,7 @@ class Yeelight extends EventEmitter {
 
         // TODO Reuse the connection already established since the bulb
         // has a connection limit
-        client.connect(55443, bulb.address, () => {
+        client.connect(55443, bulb.ipAddress, () => {
           client.write(request);
         });
 

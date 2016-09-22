@@ -31,6 +31,9 @@ const io = require('socket.io')(server); // TODO get rid of this require here
 
 const listeners = new Map();
 
+// Send a discover message
+yeelight.discover();
+
 // Initialize websockets
 io.on('connection', (socket) => {
   listeners.set(socket.id, socket);
