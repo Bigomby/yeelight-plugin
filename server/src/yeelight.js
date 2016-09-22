@@ -18,16 +18,18 @@ class Yeelight extends EventEmitter {
     this.client.on('response', (headers, statusCode, rinfo) => {
       const newBulb = {
         id: headers.ID,
+        name: headers.NAME,
         model: headers.MODEL,
+        fwVersion: headers.FW_VER,
         location: headers.LOCATION,
         support: headers.SUPPORT,
-        address: rinfo.address,
+        ipAddress: rinfo.address,
         power: headers.POWER,
-        bright: headers.BRIGHT,
-        color_mode: headers.COLOR_MODE,
-        rgb: headers.RGB,
-        hue: headers.HUE,
-        sat: headers.SAT,
+        brightness: headers.BRIGHT,
+        colorMode: headers.COLOR_MODE,
+        colorRGB: headers.RGB,
+        colorHue: headers.HUE,
+        colorSat: headers.SAT,
       };
 
       let found = false;
