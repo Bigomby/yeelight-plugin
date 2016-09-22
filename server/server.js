@@ -25,6 +25,20 @@ const yeelight = new Yeelight(logger);
 const port = cmd.port || 4000;
 const app = express();
 const server = app.listen(port);
+const io = require('socket.io')(server); // TODO get rid of this require here
+
+const listeners = new Map();
+
+// Initialize websockets
+io.on('connection', (socket) => {
+  listeners.set(socket.id, socket);
+  yeelight.discover();
+});
+
+io.on('disconnect', (socket) => {
+  listeners.delete(socket.id);
+});
+
 
 // Set the middleware
 app.use(bodyParser.json());
@@ -50,8 +64,11 @@ yeelight.on('new', (bulb) => {
   });
 });
 
-// Discover every bulb on network
-yeelight.discover();
+yeelight.on('status', (bulb) => {
+  for (const [, socket] of listeners) {
+    socket.emit('status', bulb);
+  }
+});
 
 // API endpoint to handle discover events
 app.post('/discover', (req, res) => {

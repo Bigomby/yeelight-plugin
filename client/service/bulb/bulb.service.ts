@@ -1,47 +1,30 @@
 import { Injectable } from '@angular/core';
+import * as io from 'socket.io-client';
 
 @Injectable()
 export class BulbService {
-  bulbs:Array<any>;
+    bulbs: Array<any>;
 
-  constructor() {
-    // this.bulbs = [
-    // {
-    //   name: 'Living room',
-    //   model: 'color',
-    //   fwVersion: '1.6.4',
-    //   ipAddress: '192.168.1.169',
-    //   power: 'on',
-    //   brightness: 85,
-    //   colorMode: 'Color',
-    //   colorRGB: '#121212',
-    // },
-    // {
-    //   name: 'Bedroom 1',
-    //   model: 'mono',
-    //   fwVersion: '1.7.4',
-    //   ipAddress: '192.168.1.171',
-    //   power: 'off',
-    // },
-    // {
-    //   name: 'Bedroom 2',
-    //   model: 'color',
-    //   fwVersion: '1.6.4',
-    //   ipAddress: '192.168.1.170',
-    //   power: 'on',
-    //   brightness: 100,
-    //   colorMode: 'Hue',
-    //   colorSat: '75',
-    // },
-    // {
-    //   name: 'Kitchen',
-    //   model: 'mono',
-    //   fwVersion: '1.7.4',
-    // },
-    // ];
-  }
+    constructor() {
+        this.bulbs = []
+        var socket = io.connect();
 
-  getBulbs() {
-    return this.bulbs;
-  }
+        socket.on('status', (updatedBulb) => {
+            let found;
+            for (const [index, bulb] of this.bulbs.entries()) {
+                if (updatedBulb.id === bulb.id) {
+                    found = true;
+                    this.bulbs[index] = updatedBulb;
+                }
+            }
+
+            if (!found) {
+                this.bulbs.push(updatedBulb);
+            }
+        });
+    }
+
+    getBulbs() {
+        return this.bulbs;
+    }
 }
