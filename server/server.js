@@ -8,6 +8,8 @@ const request = require('request');
 
 const Yeelight = require('./src/yeelight');
 
+const NETBEAST_URL = process.env.NETBEAST || 'localhost:8000';
+
 // Parse command-line args
 cmd.version('0.0.1')
   .option('-p, --port <n>', 'Port to start the HTTP server', parseInt)
@@ -51,7 +53,7 @@ app.use(express.static('node_modules'));
 // Listen for new bulbs announcements and send the info to NETBEAST API
 yeelight.on('new', (bulb) => {
   request.post({
-    url: `http://${process.env.NETBEAST}/api/resources`,
+    url: `http://${NETBEAST_URL}/api/resources`,
     json: {
       app: 'yeelight-plugin',
       location: 'none',
