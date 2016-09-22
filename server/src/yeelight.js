@@ -41,10 +41,19 @@ class Yeelight extends EventEmitter {
       }
 
       if (!found) {
+        // Add the new bulb to the DB and establish a connection to listen
+        // for updates
         this.bulbs.push(newBulb);
+
+        // Force the bulb to send a status message when anything is received
+        // on the connection.
+        const client = new net.Socket();
+        client.on('data', () => { this.client.search('wifi_bulb'); });
+        client.connect(55443, newBulb.ipAddress);
+
         this.emit('new', newBulb);
       } else {
-        // TODO Handle status changes from known bulbs
+        this.emit('status', newBulb);
       }
     });
   }
@@ -61,6 +70,8 @@ class Yeelight extends EventEmitter {
         const client = new net.Socket();
         const request = `{"id": "${bulb.id}", "method": "set_power", "params":["${status}", "smooth", 500]}\r\n`;
 
+        // TODO Reuse the connection already established since the bulb
+        // has a connection limit
         client.connect(55443, bulb.address, () => {
           client.write(request);
         });
