@@ -14,6 +14,7 @@
         "bootOnLoad": true,
         "type": "plugin"
     },
+    "logo": "logo.png",
     "author": "Vlado Tešanović",
     "license": "MIT",
     "dependencies": {
