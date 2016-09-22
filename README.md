@@ -9,6 +9,8 @@ SHOULD be compatible:
 - Yeelight Lightstrip
 - Yeelight Mijia Smart LED Desk Lamp
 
+![](http://gdurl.com/OK3I)
+
 **NOTE 1: The plugin only has been tested with _Yeelight LED Bulb White.**
 
 **NOTE 2: The plugin is currently on development, nothing is expected to work... yet.**
