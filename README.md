@@ -7,7 +7,6 @@ SHOULD be compatible:
 - Yeelight LED Bulb White
 - Yeelight LED Bulb Color
 - Yeelight Lightstrip
-- Yeelight Mijia Smart LED Desk Lamp
 
 ![](http://gdurl.com/OK3I)
 
