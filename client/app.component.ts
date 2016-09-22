@@ -4,17 +4,15 @@ import { BulbComponent } from './components/bulb/bulb.component';
 import { BulbService } from './service/bulb/bulb.service';
 
 @Component({
-  selector: 'app',
-  template: `
+    selector: 'app',
+    template: `
     <div class="container">
       <div align="center">
-        <h1>{{title}}</h1>
+        <h1>Yeelight devices on my network</h1>
       </div>
       <bulb></bulb>
     </div>
   `
 })
 
-export class AppComponent {
-  title: string = 'Yeelight devices';
-}
+export class AppComponent { }

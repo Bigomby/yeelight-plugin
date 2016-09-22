@@ -4,14 +4,14 @@ import { AppComponent }  from './app.component';
 import { BulbComponent }  from './components/bulb/bulb.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-  ],
-  declarations: [
-    AppComponent,
-    BulbComponent,
-  ],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+    ],
+    declarations: [
+        AppComponent,
+        BulbComponent,
+    ],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule { }
