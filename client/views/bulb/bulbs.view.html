@@ -1,0 +1,111 @@
+<!-- Bulbs list-->
+<div class="row">
+    <div *ngFor="let bulb of bulbs">
+        <!-- Panel-->
+        <div class="panel panel-default">
+            <!-- Panel heading -->
+            <div class="panel-heading">
+                <div align="center">
+                    <h4>{{bulb.name}}</h4>
+                </div>
+            </div>
+            <!-- /Panel heading -->
+
+            <!-- Panel body -->
+            <div class="panel-body">
+
+                <!-- Bulb -->
+                <div class="col-md-2">
+                    <div [ngClass]="{'panel': true, 'panel-success': bulb.ipAddress, 'panel-danger': !bulb.ipAddress}">
+                        <div class="panel-body">
+                            <div *ngIf="bulb.power === 'on'">
+                                <img src="assets/images/bulb-on.png" class="bulb">
+                            </div>
+                            <div *ngIf="bulb.power === 'off'">
+                                <img src="assets/images/bulb-off.png" class="bulb">
+                            </div>
+                            <div *ngIf="bulb.power !== 'off' && bulb.power !== 'on'">
+                                <img src="assets/images/bulb-unknown.png" class="bulb">
+                            </div>
+                        </div>
+                        <div align="center" class="panel-footer">
+                            <p *ngIf="bulb.ipAddress"> ONLINE </p>
+                            <p *ngIf="!bulb.ipAddress"> OFFLINE </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Bulb -->
+
+                <!-- Info -->
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">IP address</div>
+                                <div class="panel-body">{{bulb.ipAddress || '-'}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Model</div>
+                                <div class="panel-body">{{bulb.model || '-'}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Brighness</div>
+                                <div class="panel-body">{{bulb.brightness || '-'}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Firmware versrion</div>
+                                <div class="panel-body">{{bulb.fwVersion || '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Color Mode</div>
+                                <div class="panel-body">{{bulb.colorMode || '-'}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Color Temperature</div>
+                                <div class="panel-body">{{bulb.temperature || '-'}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">RGB</div>
+                                <div class="panel-body">{{bulb.colorRGB || '-'}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">HUE / Saturation</div>
+                                <div class="panel-body">{{bulb.colorHue || '-'}} / {{bulb.colorSat || '-'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Info -->
+
+            </div>
+            <!-- /Panel body -->
+
+        </div>
+        <!-- /Panel-->
+    </div>
+</div>
+<!-- /Bulbs list-->
+
+<div class="row">
+    <button type="button" class="btn btn-default btn-lg btn-block">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new bulb
+    </button>
+</div>
+
+<hr>
