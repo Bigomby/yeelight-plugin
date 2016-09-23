@@ -3,7 +3,7 @@ import * as io from 'socket.io-client';
 
 @Injectable()
 export class BulbService {
-    bulbs: Array<any>;
+    bulbs;
 
     constructor() {
         this.bulbs = []
