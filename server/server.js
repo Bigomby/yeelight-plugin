@@ -8,8 +8,6 @@ const request = require('request');
 
 const Yeelight = require('./src/yeelight');
 
-const NETBEAST_URL = process.env.NETBEAST || 'localhost:8000';
-
 // Parse command-line args
 cmd.version('0.0.1')
   .option('-p, --port <n>', 'Port to start the HTTP server', parseInt)
@@ -44,7 +42,6 @@ io.on('disconnect', (socket) => {
   listeners.delete(socket.id);
 });
 
-
 // Set the middleware
 app.use(bodyParser.json());
 
@@ -55,18 +52,20 @@ app.use(express.static('node_modules'));
 
 // Listen for new bulbs announcements and send the info to NETBEAST API
 yeelight.on('new', (bulb) => {
-  request.post({
-    url: `http://${NETBEAST_URL}/api/resources`,
-    json: {
-      app: 'yeelight-plugin',
-      location: 'none',
-      topic: 'lights',
-      groupname: 'none',
-      hook: `/bulb/${bulb.id}`,
-    },
-  }, (err) => {
-    if (err) throw err;
-  });
+  if (process.env.NETBEAST) {
+    request.post({
+      url: `http://${process.env.NETBEAST}/api/resources`,
+      json: {
+        app: 'yeelight-plugin',
+        location: 'none',
+        topic: 'lights',
+        groupname: 'none',
+        hook: `/bulb/${bulb.id}`,
+      },
+    }, (err) => {
+      if (err) throw err;
+    });
+  }
 });
 
 yeelight.on('status', (bulb) => {
